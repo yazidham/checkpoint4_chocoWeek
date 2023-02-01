@@ -11,17 +11,20 @@ class ProductFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
          $product = new Product();
-         $product->setName("1 ticket d'or");
+         $product->setName("Golden Ticket");
          $product->setPrice(5);
+        $product->setQuantity(1);
          $manager->persist($product);
 
         $product = new Product();
-        $product->setName("5 ticket d'or");
+        $product->setName("Golden Tickets");
         $product->setPrice(20);
+        $product->setQuantity(5);
         $manager->persist($product);
 
         $product = new Product();
-        $product->setName("10 ticket d'or");
+        $product->setName("Golden Tickets");
+        $product->setQuantity(10);
         $product->setPrice(40);
         $manager->persist($product);
 

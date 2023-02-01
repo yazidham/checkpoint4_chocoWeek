@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChocoShop !{% endblock %}
+
+{% block body %}
+    <h1 class="page-title my-5">ChocoShop</h1>
+
+    <div class="d-flex justify-content-around">
+        {% for product in products %}
+            <div class="card card-info">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Prix : <strong>{{ product.price }}</strong> ChocoCoins
+                    </h6>
+                    <p class="card-text">Equivaut à 10 inscription gratuite
+                        a un tirage de la chocoweek</p>
+                    {% if app.user.numberOfCoins >= product.price %}
+                        <a href="{{ path('app_buy_product', { productId : product.id}) }}" class="btn btn-primary">Acheter</a>
+                    {% else %}
+                        <p>vous n'avez pas assez de ChocoCoins</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

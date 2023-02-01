@@ -19,6 +19,9 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?int $price = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $quantity = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Product
     public function setPrice(?int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(?int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

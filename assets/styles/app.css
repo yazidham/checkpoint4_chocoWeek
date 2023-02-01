@@ -17,6 +17,7 @@
 /* ci-dessous, imports des fichiers css des différentes vues et composants */
 @import "navbar.scss";
 @import "home.scss";
+@import "draw.scss";
 
 
 body {

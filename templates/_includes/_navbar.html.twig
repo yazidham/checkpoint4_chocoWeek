@@ -6,22 +6,25 @@
     </div>
     <div>
         <div class="btn-group dropstart">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                 Profil
             </button>
             <div class="dropdown-menu">
                 <div class="dropdown-content">
-                    <div class="d-flex justify-content-around truc">
+                    <div class="d-flex justify-content-around">
                         <h6>{{ app.user.username }}</h6>
                         <p>{{ app.user.numberOfCoins }}</p>
                     </div>
-                    <p class="text-center mb-0">tu as :</p>
-                    <ul>
-                        <li class="text-start">{{ app.user.numberOfGoldenTickets }} Golden Ticket{% if app.user.numberOfGoldenTickets > 1 %}s{% endif %}</li>
-                        <li>{{ app.user.numberOfDraw }} Participation{% if app.user.numberOfDraw > 1 %}s{% endif %}</li>
-                        <li>{{ app.user.numberOfChocoPaid}} {% if app.user.numberOfChocoPaid > 1 %}chocolatines Payées{% else %}chocolatine Payée{% endif %}</li>
-                        <li>{{ app.user.numberOfChocoEaten }} {% if app.user.numberOfChocoEaten > 1 %}chocolatines mangées{% else %}chocolatine mangée{% endif %}</li>
-                    </ul>
+                    <strong class="mb-0 ms-2">tu as :</strong>
+                    <p class="ms-2">{{ app.user.numberOfGoldenTickets }} Golden
+                        Ticket{% if app.user.numberOfGoldenTickets > 1 %}s{% endif %}</p>
+                    <p class="ms-2">{{ app.user.numberOfDraw }}
+                        Participation{% if app.user.numberOfDraw > 1 %}s{% endif %}</p>
+                    <p class="ms-2">{{ app.user.numberOfChocoPaid }} {% if app.user.numberOfChocoPaid > 1 %}chocolatines Payées{% else %}chocolatine Payée{% endif %}</p>
+                    <p class="ms-2">{{ app.user.numberOfChocoEaten }} {% if app.user.numberOfChocoEaten > 1 %}chocolatines mangées{% else %}chocolatine mangée{% endif %}</p>
+                    <hr class="mb-1">
+                    <a href="{{ path('app_logout') }}" class="btn btn-primary mx-5 mb-0">Logout</a>
                 </div>
             </div>
         </div>

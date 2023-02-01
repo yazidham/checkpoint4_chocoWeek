@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choco Week{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-around align-items-start">
+        <div>
+            <h3>Personnes inscrites au prochain tirage : </h3>
+            {% for participant in participants %}
+                <div class="card draw-register-card mb-2">
+                    <div class="card-body d-flex justify-content-around">
+                        <h5 class="card-title">{{ participant.username }}</h5>
+                        <i class="fa fa-ticket {% if participant.isGolden %}golden-ticket{% else %}gray-ticket{% endif %}"></i>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <div class="card form-card">
+                <div class="card-body">
+                    <h5 class="card-title">Tirage de la chocoWeek</h5>
+                    <p>Vous etes inscrit pour le prochain
+                        tirage de la choco week cliquez sur
+                        le boutton pour annuler la participation</p>
+                    {% if not app.user.isParticipating %}
+                        <form method="post">
+                            <input type="checkbox" name="golden" id="golden" class="mb-4">
+                            <label for="golden">Utiliser un Golden Ticket <i class="fa fa-ticket golden-ticket"></i>
+                                (<strong>{{ app.user.numberOfGoldenTickets }}</strong>
+                                Restant)</label><br>
+                            <input type="submit" class="btn btn-primary" value="Participer">
+                        </form>
+                    {% else %}
+                        <form method="post">
+                            <input type="submit" class="btn btn-warning" value="Annuler">
+                        </form>
+                    {% endif %}
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-success">Lancer le triage au sort</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

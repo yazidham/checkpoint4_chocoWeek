@@ -27,7 +27,7 @@
                     <div class="mx-5 mb-0 d-flex flex-column align-items-center">
                         <a href="{{ path('app_logout') }}" class="btn btn-primary mb-2">Logout</a>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="" class="btn btn-success ">Admin</a>
+                            <a href="{{ path('admin_user_show') }}" class="btn btn-success ">Admin</a>
                         {% endif %}
                     </div>
                 </div>

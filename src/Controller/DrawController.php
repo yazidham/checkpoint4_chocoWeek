@@ -8,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrawController extends AbstractController

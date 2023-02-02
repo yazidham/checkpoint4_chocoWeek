@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
@@ -20,8 +20,13 @@
 
 <header>
     {% block navbar %}
-        {% include '_includes/_navbar.html.twig' %}
+        {% if 'admin' in app.request.uri %}
+            {% include '_includes/_admin_navbar.html.twig' %}
+        {% else %}
+            {% include '_includes/_navbar.html.twig' %}
+        {% endif %}
     {% endblock %}
+
 </header>
 
 <body>

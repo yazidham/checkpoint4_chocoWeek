@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="m-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Role</th>
+                <th scope="col">Golden tickets</th>
+                <th scope="col">chocoCoins</th>
+                <th scope="col">ajouter des chocoCoins</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.roles[0] }}</td>
+                    <td>{{ user.numberOfGoldenTickets }}</td>
+                    <td>{{ user.numberOfCoins }}</td>
+                    <td>
+                        <form method="get">
+                            <label for="chocoCoins"></label>
+                            <input type="number" id="chocoCoins" name="chocoCoins">
+                            <input type="hidden" id="userId" name="userId" value="{{ user.id }}">
+                            <input type="submit" class="btn btn-primary" value="ajouter des chocoCoins">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

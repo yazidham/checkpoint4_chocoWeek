@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use App\Services\Draw;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrawController extends AbstractController
@@ -32,6 +34,19 @@ class DrawController extends AbstractController
 
         return $this->render('draw/index.html.twig', [
             'participants' => $userRepository->findBy(['isParticipating' => true]),
+            'numberOfDrawableUsers' => $draw->getNumberOfDrawableeUsers()
+        ]);
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/draw/start', name: 'app_draw-start')]
+    public function startDraw(Draw $draw): Response
+    {
+        $looser = $draw->pickRandomLooser();
+        $draw->ResetPlayers();
+
+        return $this->render('draw/startDraw.html.twig', [
+            'looser' => $looser,
         ]);
     }
 }

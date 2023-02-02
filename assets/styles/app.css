@@ -18,6 +18,7 @@
 @import "navbar.scss";
 @import "home.scss";
 @import "draw.scss";
+@import "forms.scss";
 
 
 body {

@@ -1,12 +1,12 @@
 <nav class="main-navbar navbar navbar-expand-lg p-3 d-flex justify-content-between">
     <div class="ms-2">
-        <a href="{{ path('app_home') }}" class="btn btn-primary">Home</a>
-        <a href="{{ path('app_shop') }}" class="btn btn-primary">Shop</a>
-        <a href="{{ path('app_draw') }}" class="btn btn-primary">Participer</a>
+        <a href="{{ path('app_home') }}" class="btn btn-custom">Home</a>
+        <a href="{{ path('app_shop') }}" class="btn btn-custom">Shop</a>
+        <a href="{{ path('app_draw') }}" class="btn btn-custom">Participer</a>
     </div>
     <div>
         <div class="btn-group dropstart">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 Profil
             </button>
@@ -24,10 +24,10 @@
                     <p class="ms-2">{{ app.user.numberOfChocoPaid }} {% if app.user.numberOfChocoPaid > 1 %}chocolatines Payées{% else %}chocolatine Payée{% endif %}</p>
                     <p class="ms-2">{{ app.user.numberOfChocoEaten }} {% if app.user.numberOfChocoEaten > 1 %}chocolatines mangées{% else %}chocolatine mangée{% endif %}</p>
                     <hr class="mb-1">
-                    <div class="mx-5 mb-0 d-flex flex-column align-items-center">
-                        <a href="{{ path('app_logout') }}" class="btn btn-primary mb-2">Logout</a>
+                    <div class="mx-5 mb-0 d-flex gap-2 justify-content-around">
+                        <a href="{{ path('app_logout') }}" class="btn btn-custom">Logout</a>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="" class="btn btn-success ">Admin</a>
+                            <a href="" class="btn btn-success">Admin</a>
                         {% endif %}
                     </div>
                 </div>

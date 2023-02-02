@@ -8,18 +8,20 @@
     <div class="d-flex justify-content-around">
         {% for product in products %}
             <div class="card card-info">
-                <img class="card-img-top" src="..." alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Prix : <strong>{{ product.price }}</strong> ChocoCoins
+                    <h5 class="card-title">{{ product.quantity }} x <i class="fa fa-ticket golden-ticket"></i> {{ product.name }}</h5>
+                    <p class="card-text">Equivaut à {{ product.quantity }} inscription gratuite
+                        pour un tirage de la chocoweek</p>
+
+                    <h6 class="card-subtitle mb-2">Prix : <strong>{{ product.price }} </strong> <i class="fa-sharp fa-solid fa-coins golden-ticket"></i> ChocoCoins
                     </h6>
-                    <p class="card-text">Equivaut à 10 inscription gratuite
-                        a un tirage de la chocoweek</p>
-                    {% if app.user.numberOfCoins >= product.price %}
-                        <a href="{{ path('app_buy_product', { productId : product.id}) }}" class="btn btn-primary">Acheter</a>
-                    {% else %}
-                        <p>vous n'avez pas assez de ChocoCoins</p>
-                    {% endif %}
+                    <div class="mt-5">
+                        {% if app.user.numberOfCoins >= product.price %}
+                            <a href="{{ path('app_buy_product', { productId : product.id}) }}" class="btn btn-primary">Acheter</a>
+                        {% else %}
+                            <p class="text-warning">vous n'avez pas assez de ChocoCoins</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         {% endfor %}

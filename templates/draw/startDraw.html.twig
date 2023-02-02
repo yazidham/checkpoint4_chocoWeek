@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}And the looser is...{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block body %}
+{#    <div class="draw-main-container">#}
+{#        <video src="{{ asset('build/images/draw.mp4') }}" muted controls#}
+{#               class="draw-video"></video>#}
+{#        <h1 class="winner-name">Yazid</h1>#}
+{#    </div>#}
+    <h1>{{ looser.username }}</h1>
+{% endblock %}

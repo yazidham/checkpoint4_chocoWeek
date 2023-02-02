@@ -1,0 +1,21 @@
+.form-custom-container {
+  margin-right: 30%;
+  margin-left: 30%;
+}
+
+.btn-custom {
+  background-color: var(--element-color);
+  border-color: #B0413E;
+  color: var(--main-color);
+}
+
+.btn-custom:hover {
+  background-color: #B0413E;
+  border-color: #B0413E;
+  color: var(--main-color);
+}
+
+.col-form-label {
+  white-space: nowrap;
+  width: 7rem;
+}

@@ -21,9 +21,27 @@
 
 .card-info {
   width: 30%;
-  height: 15rem;
 }
 
 .card-info > * {
   text-align: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-info {
+    width: 90%;
+    margin-top: 2rem;
+  }
 }

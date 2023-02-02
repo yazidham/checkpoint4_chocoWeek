@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="page-title my-5">ChocoShop</h1>
 
-    <div class="d-flex justify-content-around">
+    <div class="card-container">
         {% for product in products %}
             <div class="card card-info">
                 <div class="card-body">
@@ -17,7 +17,7 @@
                     </h6>
                     <div class="mt-5">
                         {% if app.user.numberOfCoins >= product.price %}
-                            <a href="{{ path('app_buy_product', { productId : product.id}) }}" class="btn btn-primary">Acheter</a>
+                            <a href="{{ path('app_buy_product', { productId : product.id}) }}" class="btn btn-custom">Acheter</a>
                         {% else %}
                             <p class="text-warning">vous n'avez pas assez de ChocoCoins</p>
                         {% endif %}

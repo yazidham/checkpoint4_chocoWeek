@@ -4,18 +4,26 @@
 }
 
 .btn-custom {
-  background-color: var(--element-color);
-  border-color: #B0413E;
-  color: var(--main-color);
-}
-
-.btn-custom:hover {
   background-color: #B0413E;
   border-color: #B0413E;
   color: var(--main-color);
 }
 
+.btn-custom:hover {
+  background-color: moccasin;
+  border-color: moccasin;
+  color: black;
+}
+
 .col-form-label {
   white-space: nowrap;
   width: 7rem;
+}
+
+.add-coins-input {
+  width: 10%;
+}
+
+.table {
+  margin: 0;
 }

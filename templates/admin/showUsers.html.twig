@@ -12,7 +12,7 @@
                 <th scope="col">Role</th>
                 <th scope="col">Golden tickets</th>
                 <th scope="col">chocoCoins</th>
-                <th scope="col">ajouter des chocoCoins</th>
+                <th scope="col">ajouter ou retirer des chocoCoins</th>
             </tr>
             </thead>
             <tbody>
@@ -26,9 +26,9 @@
                     <td>
                         <form method="get">
                             <label for="chocoCoins"></label>
-                            <input type="number" id="chocoCoins" name="chocoCoins">
+                            <input type="number" id="chocoCoins" name="chocoCoins" class="add-coins-input">
                             <input type="hidden" id="userId" name="userId" value="{{ user.id }}">
-                            <input type="submit" class="btn btn-primary" value="ajouter des chocoCoins">
+                            <input type="submit" class="btn btn-custom" value="Appliquer">
                         </form>
                     </td>
                 </tr>

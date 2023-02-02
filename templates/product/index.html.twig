@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Products{% endblock %}
+
+{% block body %}
+    <h1 class="h1 mb-3 font-weight-normal text-center my-5">Liste des produits</h1>
+    <div class="w-100 d-flex justify-content-end">
+        <a href="{{ path('app_product_new') }}" class="btn btn-custom me-5"><i class="fa-solid fa-plus"></i> Ajouter un produit</a>
+    </div>
+    <table class="table m-5">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Quantitée</th>
+            <th>détails</th>
+            <th>modifier</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> Détails</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-custom"><i class="fa-solid fa-screwdriver-wrench"></i> modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

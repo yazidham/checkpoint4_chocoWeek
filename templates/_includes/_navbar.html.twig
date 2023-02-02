@@ -1,14 +1,14 @@
 <nav class="main-navbar navbar navbar-expand-lg p-3 d-flex justify-content-between">
     <div class="ms-2">
-        <a href="{{ path('app_home') }}" class="btn btn-custom">Home</a>
-        <a href="{{ path('app_shop') }}" class="btn btn-custom">Shop</a>
-        <a href="{{ path('app_draw') }}" class="btn btn-custom">Participer</a>
+        <a href="{{ path('app_home') }}" class="btn btn-custom"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="{{ path('app_shop') }}" class="btn btn-custom"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Shop</a>
+        <a href="{{ path('app_draw') }}" class="btn btn-custom"><i class="fa-solid fa-child-reaching"></i> Participer</a>
     </div>
     <div>
         <div class="btn-group dropstart">
             <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                Profil
+                Profil  <i class="fa-solid fa-circle-user ms-2"></i>
             </button>
             <div class="dropdown-menu">
                 <div class="dropdown-content">
@@ -25,9 +25,9 @@
                     <p class="ms-2">{{ app.user.numberOfChocoEaten }} {% if app.user.numberOfChocoEaten > 1 %}chocolatines mangées{% else %}chocolatine mangée{% endif %}</p>
                     <hr class="mb-1">
                     <div class="mx-5 mb-0 d-flex gap-2 justify-content-around">
-                        <a href="{{ path('app_logout') }}" class="btn btn-custom">Logout</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-custom"><i class="fa-solid fa-person-walking-arrow-right"></i> Logout</a>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="" class="btn btn-success">Admin</a>
+                            <a href="{{ path('app_product_index') }}" class="btn btn-success"><i class="fa-solid fa-gear"></i> Admin</a>
                         {% endif %}
                     </div>
                 </div>

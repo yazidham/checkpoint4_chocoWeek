@@ -1,0 +1,137 @@
+.draw-register-card {
+  width: 15rem;
+  height: 3rem;
+}
+
+.form-card {
+  width: 50%;
+}
+
+.golden-ticket {
+  color: gold;
+}
+
+.gray-ticket {
+  color: gray;
+}
+
+.draw-video {
+  position: fixed;
+  padding-right: 10%;
+  background-color: orangered;
+}
+
+.winner-name {
+  position: fixed;
+  z-index: 99;
+  top: 55%;
+  left: 46%;
+  color: var(--main-color);
+}
+
+.participating-card {
+  width: 50%;
+}
+
+.stage-image {
+  width: 100%;
+  padding-top: .5rem;
+}
+
+.stage-image-container {
+  width: 100%;
+  background-color: #ff6f85;
+}
+
+.body {
+  overflow: hidden;
+}
+
+.ap {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #333;
+  background: #222;
+  border-top: 2px solid #f0f;
+  z-index: 9999;
+}
+
+.wrapper {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  font: 300 30px/1 'Open Sans Condensed', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.wrapper.active {
+  animation: 60s credits linear infinite;
+}
+
+.movie {
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+
+.job {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.name {
+  margin-bottom: 50px;
+  font-size: 35px;
+}
+
+@keyframes credits {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -500%;
+  }
+}
+
+.hidden {
+  color: transparent;
+}
+
+.hide {
+  display: none;
+}
+
+.launch-draw {
+  position: fixed;
+  z-index: 99;
+  top: 14rem;
+  left: 44%;
+  padding: 2rem;
+}
+
+.leave-draw {
+  position: fixed;
+  z-index: 99;
+  top: 30rem;
+  left: 85%;
+  padding: 2rem;
+}
+
+.fixed {
+  position: fixed;
+  top: 18rem;
+  left: 36.5rem;
+}

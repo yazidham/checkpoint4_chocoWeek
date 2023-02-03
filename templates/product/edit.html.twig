@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block body %}
+    <h1 class="h1 mb-3 font-weight-normal text-center my-5">Modifier ce produit</h1>
+    <div class="form-custom-container">
+
+        {{ include('product/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        <div class="d-flex justify-content-start gap-5">
+            <a href="{{ path('app_product_index') }}" class="btn btn-secondary mt-3"><i class="fa-solid fa-arrow-left"></i> Revenir en arrière</a>
+
+            {{ include('product/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

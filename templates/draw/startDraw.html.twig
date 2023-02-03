@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}And the looser is...{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block body %}
+    <div class="reveal-main-container">
+        <div class="stage-image-container">
+            <img src="{{ asset('build/images/stage-image.jpg') }}" alt="stage picture" class="img-fluid stage-image">
+        </div>
+
+        <audio src="{{ asset('build/images/revealAudio.mov') }}" id="drumRoll"></audio>
+
+        <button class="launch-draw btn btn-custom" id="launch-draw">Lancer le tirage</button>
+        <a href="{{ path('app_draw') }}" class="leave-draw btn btn-primary hide" id="leaveDrawPage">Quitter la page</a>
+
+        <div class='wrapper' id="wrapper">
+            <div class='movie'>
+                Bienvenue dans ce tirage au sort
+            </div>
+            <div class='job'>
+
+            </div>
+            <div class='movie'>
+                de la chocoWeek !!!!!!
+            </div>
+            <div class='job hidden'>
+                egferqgre
+            </div>
+            <div class='name'>
+                La Personne qui va devoir payer les chocolatines
+            </div>
+            <div class='job'>
+
+            </div>
+            <div class='name'>
+                N'est autre que ...
+            </div>
+            <div class='job hidden'>
+                dvfdbgtrsg
+            </div>
+            <div class='job hidden'>
+                dvfdbgtrsg
+            </div>
+            <div class='job hidden'>
+                dvfdbgtrsg
+            </div>
+            <div class='job hidden'>
+                dvfdbgtrsg
+
+            </div>
+            <div class='name hidden'>
+                dvfdbgtrsg
+
+            </div>
+            <div class='job hidden'>
+                dvfdbgtrsg
+
+            </div>
+            <div class='name hidden'>
+                fnhgnh
+            </div>
+            <div class='job hidden'>
+                nhdfgbhfn
+            </div>
+            <div class='name hidden'>
+                gf gffh hg
+            </div>
+            <div class='job hidden'>
+                fbfgg gf
+            </div>
+            <div class='job hidden'>
+                egferqgre
+            </div>
+            <div class='movie' id="looser">
+                {{ looser.username }}
+            </div>
+            <div class='job'>
+
+            </div>
+            <div class='name'>
+            </div>
+        </div>
+    </div>
+{% endblock %}

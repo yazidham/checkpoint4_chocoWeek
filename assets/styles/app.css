@@ -1,0 +1,27 @@
+/* imports google fonts */
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');*/
+
+
+/* variables CSS */
+:root {
+    --main-color: #FFF9F5;
+    --sub-color: #0F1713;
+    --element-color: #e01c1c;
+    --main-font: 'Handlee', sans-serif;
+    --sub-font: 'Roboto', sans-serif;
+}
+
+/* ressource sur les breakpoints bootstrap: https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
+
+/* ci-dessous, imports des fichiers css des différentes vues et composants */
+@import "navbar.scss";
+@import "home.scss";
+@import "draw.scss";
+@import "forms.scss";
+
+
+body {
+    background-color: var(--main-color);
+    height: 100%;
+}

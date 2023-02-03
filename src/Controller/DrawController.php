@@ -41,11 +41,11 @@ class DrawController extends AbstractController
     #[Route('/draw/start', name: 'app_draw-start')]
     public function startDraw(Draw $draw): Response
     {
-        $looser = $draw->pickRandomLooser();
-        $draw->ResetPlayers();
+//        $looser = $draw->pickRandomLooser();
+//        $draw->ResetPlayers();
 
         return $this->render('draw/startDraw.html.twig', [
-            'looser' => $looser,
+//            'looser' => $looser,
         ]);
     }
 }

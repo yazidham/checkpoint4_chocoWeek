@@ -8,6 +8,14 @@
     <div class="form-custom-container">
         <h1 class="h1 mb-3 font-weight-normal text-center my-5">ChocoWeek</h1>
         {{ form_start(registrationForm) }}
+
+        {% if form_errors(registrationForm.username) or form_errors(registrationForm.plainPassword) %}
+            <div class="alert alert-danger text-center">
+                {{ form_errors(registrationForm.username) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+        {% endif %}
+
         <div>
             {{ form_label(registrationForm.username) }}
             {{ form_widget(registrationForm.username) }}

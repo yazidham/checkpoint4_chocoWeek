@@ -19,8 +19,9 @@
                     <strong class="mb-0 ms-2">tu as :</strong>
                     <p class="ms-2">{{ app.user.numberOfGoldenTickets }} Golden
                         Ticket{% if app.user.numberOfGoldenTickets > 1 %}s{% endif %}</p>
-                    <p class="ms-2">{{ app.user.numberOfDraw }}
-                        Participation{% if app.user.numberOfDraw > 1 %}s{% endif %}</p>
+                    <p class="ms-2">{{ app.user.numberOfParticipation }}
+                        Participation{% if app.user.numberOfParticipation > 1 %}s{% endif %}</p>
+                    <p class="ms-2">été tiré au sort {{ app.user.numberOfDraw }} fois</p>
                     <p class="ms-2">{{ app.user.numberOfChocoPaid }} {% if app.user.numberOfChocoPaid > 1 %}chocolatines Payées{% else %}chocolatine Payée{% endif %}</p>
                     <p class="ms-2">{{ app.user.numberOfChocoEaten }} {% if app.user.numberOfChocoEaten > 1 %}chocolatines mangées{% else %}chocolatine mangée{% endif %}</p>
                     <hr class="mb-1">

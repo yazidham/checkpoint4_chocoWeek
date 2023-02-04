@@ -4,16 +4,17 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use App\Services\Draw;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrawController extends AbstractController
 {
     #[Route('/draw', name: 'app_draw')]
-    public function index(UserRepository $userRepository, EntityManagerInterface $manager, Draw $draw): Response
+    public function index(UserRepository $userRepository, Request $request, Draw $draw): Response
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -31,9 +32,18 @@ class DrawController extends AbstractController
             return $this->redirectToRoute('app_draw');
         }
 
+        //handle ajax request
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'content' => $this->renderView('_includes/_participant_list.html.twig', [
+                    'participants' => $userRepository->findBy(['isParticipating' => true]),
+                ])
+            ]);
+        }
+
         return $this->render('draw/index.html.twig', [
+            'numberOfDrawableUsers' => $draw->getNumberOfDrawableeUsers(),
             'participants' => $userRepository->findBy(['isParticipating' => true]),
-            'numberOfDrawableUsers' => $draw->getNumberOfDrawableeUsers()
         ]);
     }
 

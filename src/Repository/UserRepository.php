@@ -75,4 +75,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getResult()
         ;
     }
+
+    public function findGoldenParticipants()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.isGolden = true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[IsGranted('ROLE_USER')]
 class DrawController extends AbstractController
 {
     #[Route('/draw', name: 'app_draw')]
@@ -42,7 +43,7 @@ class DrawController extends AbstractController
         }
 
         return $this->render('draw/index.html.twig', [
-            'numberOfDrawableUsers' => $draw->getNumberOfDrawableeUsers(),
+            'numberOfDrawableUsers' => $draw->getNumberOfDrawableUsers(),
             'participants' => $userRepository->findBy(['isParticipating' => true]),
         ]);
     }
@@ -52,7 +53,9 @@ class DrawController extends AbstractController
     public function startDraw(Draw $draw): Response
     {
         $looser = $draw->pickRandomLooser();
-        $draw->ResetPlayers();
+        if (!$looser) {
+            return $this->redirectToRoute('app_draw');
+        }
 
         return $this->render('draw/startDraw.html.twig', [
             'looser' => $looser,

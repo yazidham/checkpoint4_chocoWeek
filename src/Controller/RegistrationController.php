@@ -31,6 +31,14 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $user->setNumberOfCoins(0);
+            $user->setNumberOfGoldenTickets(0);
+            $user->setNumberOfDraw(0);
+            $user->setNumberOfChocoPaid(0);
+            $user->setNumberOfChocoEaten(0);
+            $user->setNumberOfParticipation(0);
+            $user->setIsGolden(0);
+            $user->setIsParticipating(0);
 
             $entityManager->persist($user);
             $entityManager->flush();

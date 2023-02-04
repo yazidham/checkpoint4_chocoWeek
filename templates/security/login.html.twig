@@ -7,9 +7,6 @@
 {% block body %}
     <div class="form-custom-container">
         <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
 
             {% if app.user %}
                 <div class="mb-3">
@@ -18,6 +15,9 @@
             {% endif %}
 
             <h1 class="h1 mb-3 font-weight-normal text-center my-5">ChocoWeek</h1>
+            {% if error %}
+                <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             <label for="inputUsername" class="mb-2">Username</label>
             <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
                    class="form-control form-custom-input" autocomplete="username" required autofocus>

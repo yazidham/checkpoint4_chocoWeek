@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $isGolden = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $NumberOfParticipation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -200,6 +203,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsGolden(?bool $isGolden): self
     {
         $this->isGolden = $isGolden;
+
+        return $this;
+    }
+
+    public function getNumberOfParticipation(): ?int
+    {
+        return $this->NumberOfParticipation;
+    }
+
+    public function setNumberOfParticipation(?int $NumberOfParticipation): self
+    {
+        $this->NumberOfParticipation = $NumberOfParticipation;
 
         return $this;
     }

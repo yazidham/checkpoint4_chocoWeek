@@ -43,21 +43,49 @@ class Draw
         $this->manager->flush();
     }
 
-    public function getNumberOfDrawableeUsers(): int
+    public function getNumberOfDrawableUsers(): int
     {
         $drawableUsers = $this->userRepository->findOneRandomDrawableUser();
         return count($drawableUsers);
     }
 
-    public function pickRandomLooser(): User
+    public function pickRandomLooser(): User|null
     {
         $drawableUsers = $this->userRepository->findOneRandomDrawableUser();
-        $numberOfParticipatingUsers = count($drawableUsers);
-        $randomIndex = rand(0, $numberOfParticipatingUsers);
-        return $drawableUsers[$randomIndex];
+        if (empty($drawableUsers)) {
+            return null;
+
+        }
+
+        shuffle($drawableUsers);
+        $looser = $drawableUsers[0];
+        $this->updateLooserStats($looser);
+
+        array_shift($drawableUsers);
+        $this->updateWinnersStats($drawableUsers);
+
+        $this->resetPlayers();
+
+        return $looser;
     }
 
-    public function ResetPlayers(): void
+    public function updateLooserStats(User $looser): void
+    {
+        $NumberOfParticipatingUsers = count($this->userRepository->findParticipatingUsers());
+        $looser->setNumberOfDraw($looser->getNumberOfDraw() + 1);
+        $looser->setNumberOfChocoPaid($looser->getNumberOfChocoPaid() + $NumberOfParticipatingUsers - 1);
+    }
+
+    public function updateWinnersStats(array $participants): void
+    {
+        $goldenParticipants = $this->userRepository->findGoldenParticipants();
+        $winners = array_merge($goldenParticipants, $participants);
+        foreach ($winners as $winner) {
+            $winner->setNumberOfChocoeaten($winner->getNumberOfChocoeaten() + 1);
+        }
+    }
+
+    public function resetPlayers(): void
     {
         $participatingUsers = $this->userRepository->findParticipatingUsers();
 
@@ -66,6 +94,7 @@ class Draw
             if ($participatingUser->isIsGolden()) {
                 $participatingUser->setNumberOfGoldenTickets($participatingUser->getNumberOfGoldenTickets() - 1);
             }
+            $participatingUser->setNumberOfParticipation($participatingUser->getNumberOfParticipation() + 1);
             $participatingUser->setIsGolden(false);
             $this->manager->persist($participatingUser);
         }

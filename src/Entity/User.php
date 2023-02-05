@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -17,6 +20,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Regex(
+        pattern: '/yazidfesse/i',
+        message: 'Non Pierre...Non',
+        match: false
+    )]
+    #[Assert\Regex(
+        pattern: '/yazid fesse/i',
+        message: 'Non Pierre...Non',
+        match: false
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
@@ -52,6 +65,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?int $NumberOfParticipation = null;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Riddle::class)]
+    private Collection $riddles;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ranking::class)]
+    private Collection $rankings;
+
+    public function __construct()
+    {
+        $this->riddles = new ArrayCollection();
+        $this->rankings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -215,6 +240,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNumberOfParticipation(?int $NumberOfParticipation): self
     {
         $this->NumberOfParticipation = $NumberOfParticipation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Riddle>
+     */
+    public function getRiddles(): Collection
+    {
+        return $this->riddles;
+    }
+
+    public function addRiddle(Riddle $riddle): self
+    {
+        if (!$this->riddles->contains($riddle)) {
+            $this->riddles->add($riddle);
+            $riddle->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRiddle(Riddle $riddle): self
+    {
+        if ($this->riddles->removeElement($riddle)) {
+            // set the owning side to null (unless already changed)
+            if ($riddle->getAuthor() === $this) {
+                $riddle->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ranking>
+     */
+    public function getRankings(): Collection
+    {
+        return $this->rankings;
+    }
+
+    public function addRanking(Ranking $ranking): self
+    {
+        if (!$this->rankings->contains($ranking)) {
+            $this->rankings->add($ranking);
+            $ranking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRanking(Ranking $ranking): self
+    {
+        if ($this->rankings->removeElement($ranking)) {
+            // set the owning side to null (unless already changed)
+            if ($ranking->getUser() === $this) {
+                $ranking->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -1,58 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ riddle.title }}{% endblock %}
 
 {% block body %}
+    <div class="mb-4"></div>
+    <a href="{{ path('app_game') }}" class="m-4"><i class="fa-solid fa-circle-arrow-left element-color h3"></i></a>
     <div class="d-flex justify-content-around mt-3 guess-card mt-5">
         <div class="card w-75">
             <div class="card-body">
-                <h3 class="card-title text-center mb-3">le canard</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid deleniti ea ex fuga hic
-                    quae
-                    quasi repellendus tempora. Aliquid beatae deleniti dolore error facere iusto, natus quam
-                    quasi
-                    sequi ullam!</p>
-                <p>Proposée par : Franck</p>
-                <div class="d-flex justify-content-between">
+                {% if riddle.title %}
+                    <h3 class="card-title text-center mb-3">{{ riddle.title }}</h3>
+                {% endif %}
+                <strong class="mb-5">{{ riddle.entitled }}</strong>
+                <p class="mt-3">Proposée par : {{ riddle.author.username }}</p>
+                <div class="d-flex justify-content-between align-items-end">
                     <div class="w-100">
-                        <h5>Votre reponse ?</h5>
-                        <form method="post">
-                            <div class="input-group mb-3 guess-input">
-                                <label for="guess"></label>
-                                <input type="text" class="form-control" id="guess">
-                                <input type="submit" value="valider" class="btn btn-custom">
-                            </div>
-                        </form>
+                        {% if riddle.author.id == app.user.id %}
+                            <h5 class="mt-3">Vous avez Proposé ce ChocoGuess</h5>
+                            <p>Réponse : {{ riddle.answer|capitalize }}</p>
+                        {% elseif not hasGuessed %}
+                            <h5>Ta réponse ?</h5>
+                            {% if message %}<p class="text-{{ message[0] }}">{{ message[1] }}</p>{% endif %}
+                            <form method="post">
+                                <div class="input-group mb-3 guess-input">
+                                    <label for="guess"></label>
+                                    <input type="text" class="form-control" id="guess" name="guess" required>
+                                    <input type="submit" value="valider" class="btn btn-custom">
+                                </div>
+                            </form>
+                        {% else %}
+                            <h5 class="mt-3 text-success">Félicitation tu as trouvé la réponse</h5>
+                            <p>Réponse : {{ riddle.answer|capitalize }}</p>
+                        {% endif %}
                     </div>
                     <div class="d-flex flex-column align-items-center ps-5">
-                        <i class="fa-solid fa-circle-check h1"></i>
-                        {#                    <i class="fa-solid fa-circle-xmark"></i> #}
-                        <p class="text-nowrap h5">3 essais</p>
+                        {% if riddle.author.id != app.user.id %}
+                            <i class="h1 fa-solid fa-circle-{% if hasGuessed %}check text-success{% else %}xmark text-warning{% endif %}"></i>
+                            <p class="text-nowrap h5">{% if numberOfTries %}{{ numberOfTries }}{% else %}0{% endif %}
+                                essai{% if numberOfTries > 1 %}s{% endif %}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <h2 class="page-title mt-5">classement</h2>
-    <div class="p-5">
-        <table class="table mb-5">
-            <thead class="thead-dark text-center">
-            <tr>
-                <th scope="col">place</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Nombre d'essai(s)</th>
-                <th scope="col">Récompense</th>
-            </tr>
-            </thead>
-            <tbody class="text-center">
-            <tr>
-                <th scope="row">1</th>
-                <td class="">Mark</td>
-                <td>4</td>
-                <td>3 chocoCoins</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    {% if playersRanking %}
+        <h2 class="page-title mt-5">classement</h2>
+        <div class="p-5">
+            <table class="table mb-5">
+                <thead class="thead-dark text-center">
+                <tr>
+                    <th scope="col">place</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nombre d'essai(s)</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                {% for player in playersRanking %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td class="">{{ player.user.username }}</td>
+                        <td>{{ player.numberOfTries }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}

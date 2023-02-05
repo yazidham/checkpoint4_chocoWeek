@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Riddle{% endblock %}
+
+{% block body %}
+    <h1 class="page-title my-5">Propose ton ChocoGuess</h1>
+    <div class="form-custom-container">
+        {{ form_start(form) }}
+
+        {{ form_label(form.title, 'Titre') }}
+        {{ form_widget(form.title) }}
+
+        {{ form_label(form.entitled, 'Intitulé *') }}
+        {{ form_widget(form.entitled) }}
+
+        {{ form_label(form.answer, 'Réponse *') }}
+        {{ form_widget(form.answer) }}
+        <p>* Champs obligatoires</p>
+        <input type="submit" value="soumettre" class="btn btn-custom mt-3">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

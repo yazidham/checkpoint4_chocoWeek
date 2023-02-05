@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         $faker = Factory::create();
 
         $admin = new User();
-        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin'));
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin1212'));
         $admin->setUsername('admin');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setNumberOfCoins(40);

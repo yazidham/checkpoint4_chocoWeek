@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-around mt-3 guess-card mt-5">
+        <div class="card w-75">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-3">le canard</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid deleniti ea ex fuga hic
+                    quae
+                    quasi repellendus tempora. Aliquid beatae deleniti dolore error facere iusto, natus quam
+                    quasi
+                    sequi ullam!</p>
+                <p>Proposée par : Franck</p>
+                <div class="d-flex justify-content-between">
+                    <div class="w-100">
+                        <h5>Votre reponse ?</h5>
+                        <form method="post">
+                            <div class="input-group mb-3 guess-input">
+                                <label for="guess"></label>
+                                <input type="text" class="form-control" id="guess">
+                                <input type="submit" value="valider" class="btn btn-custom">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex flex-column align-items-center ps-5">
+                        <i class="fa-solid fa-circle-check h1"></i>
+                        {#                    <i class="fa-solid fa-circle-xmark"></i> #}
+                        <p class="text-nowrap h5">3 essais</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="page-title mt-5">classement</h2>
+    <div class="p-5">
+        <table class="table mb-5">
+            <thead class="thead-dark text-center">
+            <tr>
+                <th scope="col">place</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Nombre d'essai(s)</th>
+                <th scope="col">Récompense</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr>
+                <th scope="row">1</th>
+                <td class="">Mark</td>
+                <td>4</td>
+                <td>3 chocoCoins</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -19,6 +19,7 @@
 @import "home.scss";
 @import "draw.scss";
 @import "forms.scss";
+@import "game.scss";
 
 
 body {

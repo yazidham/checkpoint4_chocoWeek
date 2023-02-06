@@ -30,6 +30,12 @@ class ShopController extends AbstractController
 
         /** @var \App\Entity\User */
         $user = $this->getUser();
+
+        if ($productPrice > $user->getNumberOfCoins()) {
+            $this->addFlash('danger', "vous n'avez pas assez de ChocoCoins");
+            return $this->redirectToRoute('app_shop');
+        }
+
         $user->setNumberOfCoins($user->getNumberOfCoins() - $productPrice);
         $user->setNumberOfGoldenTickets($user->getNumberOfGoldenTickets() + $productQuantity);
         $manager->persist($user);

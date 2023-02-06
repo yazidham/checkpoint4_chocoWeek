@@ -1,6 +1,8 @@
 <nav class="main-navbar navbar navbar-expand-lg p-3 d-flex justify-content-between">
     <div class="ms-2">
-        <a href="{{ path('app_home') }}" class="btn btn-custom"><i class="fa-solid fa-house"></i> Accueil</a>
+        <a href="{{ path('app_home') }}"><img src="{{ asset('build/images/logo_choco_week.png') }}" alt="logo" class="choco-logo"></a>
+    </div>
+    <div>
         <a href="{{ path('app_shop') }}" class="btn btn-custom"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Shop</a>
         <a href="{{ path('app_draw') }}" class="btn btn-custom"><i class="fa-solid fa-child-reaching"></i> Tirage au sort</a>
         <a href="{{ path('app_game') }}" class="btn btn-custom"><i class="fa-solid fa-puzzle-piece"></i> Jeu</a>
